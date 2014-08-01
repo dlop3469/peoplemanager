@@ -1,8 +1,11 @@
-package com.examples.peoplemanager.service;
+package com.examples.peoplemanager.service.mock;
 
 import java.util.*;
 
 import com.examples.peoplemanager.model.Person;
+import com.examples.peoplemanager.service.ConfigService;
+import com.examples.peoplemanager.service.PeopleService;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import org.joda.time.Days;
 
@@ -12,9 +15,14 @@ public class MockPeopleService implements PeopleService<Person> {
     private Map<String,Person> people;
     private static Person oldest;
 
-    public MockPeopleService() {
+    private ConfigService cs;
+
+    @Inject
+    public MockPeopleService(ConfigService cs) {
+        this.cs = cs;
         people = new HashMap<String,Person>();
         numberOfMales = 0;
+        load();
     }
 
     @Override
@@ -43,9 +51,13 @@ public class MockPeopleService implements PeopleService<Person> {
         return daysBetween(p1, p2);
     }
 
+    /**
+     * Load configuration from Mock data.
+     */
     @Override
     public void load() {
-
+        for (Person p: cs.load())
+            add(p);
     }
 
     @Override

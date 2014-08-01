@@ -3,12 +3,13 @@ package com.examples.peoplemanager;
 import com.examples.peoplemanager.controller.PeopleManager;
 import com.examples.peoplemanager.model.Gender;
 import com.examples.peoplemanager.model.Person;
-import com.examples.peoplemanager.service.MockPeopleService;
+import com.examples.peoplemanager.service.ConfigService;
+import com.examples.peoplemanager.service.mock.MockConfigService;
+import com.examples.peoplemanager.service.mock.MockPeopleService;
 import com.examples.peoplemanager.service.PeopleService;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.junit.After;
@@ -34,6 +35,7 @@ public class PeopleManagerTest {
             @Override
             protected void configure() {
                 bind(PeopleService.class).to(MockPeopleService.class);
+                bind(ConfigService.class).to(MockConfigService.class);
             }
         });
         dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
