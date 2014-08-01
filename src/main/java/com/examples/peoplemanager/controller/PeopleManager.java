@@ -31,4 +31,8 @@ public class PeopleManager {
         return ps.daysBetween(p1, p2);
     }
 
+    public int daysBetweenByName(final String name1, final String name2) {
+        return ps.daysBetweenByName(name1, name2);
+    }
+
 }

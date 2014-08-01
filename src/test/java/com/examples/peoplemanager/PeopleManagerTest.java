@@ -107,4 +107,17 @@ public class PeopleManagerTest {
         Assert.assertEquals(pm.daysBetween(p2, p1), -31);
     }
 
+    @Test
+    public final void WhenCheckHowManyDaysOlderIsBillThanPaulShouldBe2862() {
+        PeopleManager pm = injector.getInstance(PeopleManager.class);
+
+        Person bill = new Person("Bill", "McKnight", Gender.MALE, dtf.parseDateTime("16/03/77"));
+        Person paul = new Person("Paul", "Robinson", Gender.MALE, dtf.parseDateTime("15/01/85"));
+
+        pm.add(bill);
+        pm.add(paul);
+
+        Assert.assertEquals(pm.daysBetweenByName("Bill", "Paul"), 2862);
+    }
+
 }
