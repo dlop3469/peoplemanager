@@ -5,6 +5,7 @@ import com.examples.peoplemanager.model.Gender;
 import com.examples.peoplemanager.model.Person;
 import com.examples.peoplemanager.service.ConfigService;
 import com.examples.peoplemanager.service.mock.MockConfigService;
+import com.examples.peoplemanager.service.mock.MockEmptyConfigService;
 import com.examples.peoplemanager.service.mock.MockPeopleService;
 import com.examples.peoplemanager.service.PeopleService;
 import com.google.inject.AbstractModule;
@@ -35,7 +36,7 @@ public class PeopleManagerTest {
             @Override
             protected void configure() {
                 bind(PeopleService.class).to(MockPeopleService.class);
-                bind(ConfigService.class).to(MockConfigService.class);
+                bind(ConfigService.class).to(MockEmptyConfigService.class);
             }
         });
         dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
@@ -89,13 +90,13 @@ public class PeopleManagerTest {
     @Test
     public final void whenCheckOldestPersonShouldBeTheOneWithOlderDayOfBirth() {
         PeopleManager pm = injector.getInstance(PeopleManager.class);
-        Person anna = (new Person("Anna", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/77")));
+        Person anna = (new Person("Wes", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/77")));
         Person maria = (new Person("Maria", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/78")));
 
         pm.add(anna);
         pm.add(maria);
 
-        Assert.assertEquals(pm.getOldestPerson(), anna);
+        Assert.assertEquals(pm.getOldestPerson().getName(), "Wes");
     }
 
     @Test
