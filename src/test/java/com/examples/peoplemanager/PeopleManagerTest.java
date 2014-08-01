@@ -24,10 +24,21 @@ public class PeopleManagerTest {
     @Test
     public final void whenOneMaleInSystemReturnsOne() {
         PeopleManager pm = new PeopleManager();
-
         Person joe = (new Person("Joe", "Surname", Gender.MALE, "1980-02-02"));
 
         pm.add(joe);
+
+        Assert.assertEquals(pm.getNumberOfMales(), 1);
+    }
+
+    @Test
+    public final void whenOneMaleAndOneFemaleInSystemReturnsOne() {
+        PeopleManager pm = new PeopleManager();
+        Person joe = (new Person("Joe", "Surname", Gender.MALE, "1980-02-02"));
+        Person maria = (new Person("Maria", "Surname", Gender.FEMALE, "1985-02-02"));
+
+        pm.add(joe);
+        pm.add(maria);
 
         Assert.assertEquals(pm.getNumberOfMales(), 1);
     }
