@@ -23,4 +23,12 @@ public class PeopleManager {
         return ps.getNumberOfMales();
     }
 
+    public Person getOldestPerson() {
+        return (Person) ps.getOldestPerson();
+    }
+
+    public int daysBetween(Person p1, Person p2) {
+        return ps.daysBetween(p1, p2);
+    }
+
 }

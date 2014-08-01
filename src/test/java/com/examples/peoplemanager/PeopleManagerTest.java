@@ -83,17 +83,28 @@ public class PeopleManagerTest {
 
         Assert.assertEquals(pm.getNumberOfMales(), 0);
     }
-//
-//    @Test
-//    public final void whenCheckOldestPersonShouldBeTheOneWithOlderDayOfBirth() {
-//        PeopleManager pm = injector.getInstance(PeopleManager.class);
-//        Person anna = (new Person("Anna", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/77")));
-//        Person maria = (new Person("Maria", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/78")));
-//
-//        pm.add(anna);
-//        pm.add(maria);
-//
-//        Assert.assertEquals(pm.getOldestPerson(), anna);
-//    }
+
+    @Test
+    public final void whenCheckOldestPersonShouldBeTheOneWithOlderDayOfBirth() {
+        PeopleManager pm = injector.getInstance(PeopleManager.class);
+        Person anna = (new Person("Anna", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/77")));
+        Person maria = (new Person("Maria", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/78")));
+
+        pm.add(anna);
+        pm.add(maria);
+
+        Assert.assertEquals(pm.getOldestPerson(), anna);
+    }
+
+    @Test
+    public final void whenCheckDaysBetweenPeopleInAMonthBirthDifferenceShouldBe31() {
+        PeopleManager pm = injector.getInstance(PeopleManager.class);
+
+        Person p1 = new Person("Joe", "Surname", Gender.MALE, dtf.parseDateTime("16/03/77"));
+        Person p2 = new Person("Pepito", "Surname", Gender.FEMALE, dtf.parseDateTime("16/04/77"));
+
+        Assert.assertEquals(pm.daysBetween(p1, p2), 31);
+        Assert.assertEquals(pm.daysBetween(p2, p1), -31);
+    }
 
 }
