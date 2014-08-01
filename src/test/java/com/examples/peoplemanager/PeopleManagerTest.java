@@ -13,7 +13,7 @@ public class PeopleManagerTest {
 
     @Test
     public final void whenRequestNumberOfMalesOnEmptyPeopleReturnsNone() {
-        PeopleManager pm = new Peoplemanager();
+        PeopleManager pm = new PeopleManager();
 
         Assert.assertEquals(pm.getNumberOfMales(), 0);
     }
