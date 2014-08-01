@@ -43,4 +43,16 @@ public class PeopleManagerTest {
         Assert.assertEquals(pm.getNumberOfMales(), 1);
     }
 
+    @Test
+    public final void whenTwoFemaleAndNoMaleReturnsNone() {
+        PeopleManager pm = new PeopleManager();
+        Person anna = (new Person("Anna", "Surname", Gender.FEMALE, "1980-02-02"));
+        Person maria = (new Person("Maria", "Surname", Gender.FEMALE, "1985-02-02"));
+
+        pm.add(anna);
+        pm.add(maria);
+
+        Assert.assertEquals(pm.getNumberOfMales(), 0);
+    }
+
 }
