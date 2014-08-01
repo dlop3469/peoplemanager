@@ -1,5 +1,7 @@
 package com.examples.peoplemanager.model;
 
+import org.joda.time.DateTime;
+
 /**
  * This class defines a person.
  * A person could change its name, surname and gender over their life.
@@ -10,9 +12,9 @@ public class Person {
     private String name;
     private String surname;
     private Gender gender;
-    private final String dateOfBirth;
+    private final DateTime dateOfBirth;
 
-    public Person(String name, String surname, Gender gender, String dateOfBirth) {
+    public Person(String name, String surname, Gender gender, DateTime dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.gender = gender;
@@ -43,7 +45,7 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getDateOfBirth() {
+    public DateTime getDateOfBirth() {
         return dateOfBirth;
     }
 

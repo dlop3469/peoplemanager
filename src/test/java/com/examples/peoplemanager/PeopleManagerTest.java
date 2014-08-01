@@ -2,6 +2,9 @@ package com.examples.peoplemanager;
 
 import com.examples.peoplemanager.model.Gender;
 import com.examples.peoplemanager.model.Person;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,17 +17,23 @@ import org.junit.Test;
 
 public class PeopleManagerTest {
 
+    private PeopleManager pm;
+    private DateTimeFormatter dtf;
+
+    @Before
+    public void setUp() {
+        pm = new PeopleManager();
+        dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
+    }
+
     @Test
     public final void whenRequestNumberOfMalesOnEmptyPeopleReturnsNone() {
-        PeopleManager pm = new PeopleManager();
-
         Assert.assertEquals(pm.getNumberOfMales(), 0);
     }
 
     @Test
     public final void whenOneMaleInSystemReturnsOne() {
-        PeopleManager pm = new PeopleManager();
-        Person joe = (new Person("Joe", "Surname", Gender.MALE, "1980-02-02"));
+        Person joe = (new Person("Joe", "Surname", Gender.MALE,  dtf.parseDateTime("16/03/77")));
 
         pm.add(joe);
 
@@ -33,9 +42,8 @@ public class PeopleManagerTest {
 
     @Test
     public final void whenOneMaleAndOneFemaleInSystemReturnsOne() {
-        PeopleManager pm = new PeopleManager();
-        Person joe = (new Person("Joe", "Surname", Gender.MALE, "1980-02-02"));
-        Person maria = (new Person("Maria", "Surname", Gender.FEMALE, "1985-02-02"));
+        Person joe = (new Person("Joe", "Surname", Gender.MALE,  dtf.parseDateTime("16/03/77")));
+        Person maria = (new Person("Maria", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/78")));
 
         pm.add(joe);
         pm.add(maria);
@@ -45,9 +53,8 @@ public class PeopleManagerTest {
 
     @Test
     public final void whenTwoFemaleAndNoMaleReturnsNone() {
-        PeopleManager pm = new PeopleManager();
-        Person anna = (new Person("Anna", "Surname", Gender.FEMALE, "1980-02-02"));
-        Person maria = (new Person("Maria", "Surname", Gender.FEMALE, "1985-02-02"));
+        Person anna = (new Person("Anna", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/77")));
+        Person maria = (new Person("Maria", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/78")));
 
         pm.add(anna);
         pm.add(maria);
@@ -57,9 +64,8 @@ public class PeopleManagerTest {
 
     @Test
     public final void whenCheckOldestPersonShouldBeTheOneWithOlderDayOfBirth() {
-        PeopleManager pm = new PeopleManager();
-        Person anna = (new Person("Anna", "Surname", Gender.FEMALE, "1980-02-02"));
-        Person maria = (new Person("Maria", "Surname", Gender.FEMALE, "1985-02-02"));
+        Person anna = (new Person("Anna", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/77")));
+        Person maria = (new Person("Maria", "Surname", Gender.FEMALE,  dtf.parseDateTime("16/03/78")));
 
         pm.add(anna);
         pm.add(maria);
