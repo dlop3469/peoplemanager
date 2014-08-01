@@ -1,5 +1,7 @@
 package com.examples.peoplemanager;
 
+import com.examples.peoplemanager.model.Gender;
+import com.examples.peoplemanager.model.Person;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +25,7 @@ public class PeopleManagerTest {
     public final void whenOneMaleInSystemReturnsOne() {
         PeopleManager pm = new PeopleManager();
 
-        Person joe = (new Person("Joe", "Surname", Gender.MALE, new DateTime());
+        Person joe = (new Person("Joe", "Surname", Gender.MALE, "1980-02-02"));
 
         pm.add(joe);
 
